@@ -7,7 +7,7 @@
 use axum::{
     extract::Request, handler::HandlerWithoutStateExt, http::StatusCode, routing::get, Router,
 };
-use std::net::SocketAddr;
+use std::{net::SocketAddr, time::{SystemTime, UNIX_EPOCH}};
 use tower::ServiceExt;
 use tower_http::{
     services::{ServeDir, ServeFile},
@@ -57,6 +57,10 @@ fn using_serve_dir_only_from_root_via_fallback() -> Router {
         .fallback_service(serve_dir)
 }
 
+fn get_time_value() -> String {
+    SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs().to_string()
+}
+
 fn using_serve_dir_with_handler_as_service() -> Router {
     // async fn handle_404() -> (StatusCode, &'static str) {
     //     (StatusCode::NOT_FOUND, "Not found")
@@ -69,6 +73,7 @@ fn using_serve_dir_with_handler_as_service() -> Router {
 
     Router::new()
         .nest_service("/assets", ServeDir::new("assets"))
+        .route("/get_time", get(|| async { get_time_value() }))
         .route("/foo", get(|| async { "Hi from /foo" }))
         .fallback_service(serve_dir)
 }
