@@ -7,7 +7,7 @@ edition = "2021"
 axum = "0.7.5"
 axum-extra = "0.9.3"
 serde_json = { version = "1.0.122", features = ["alloc", "arbitrary_precision", "float_roundtrip"] }
-tokio = { version = "1.39.2", features = ["fs", "bytes", "full", "test-util", "tracing"] }
+tokio = { version = "1.43.1", features = ["fs", "bytes", "full", "test-util", "tracing"] }
 tower = { version = "0.4.13", features = ["full"] }
 tower-http = { version = "0.5.2", features = ["fs", "trace"] }
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
