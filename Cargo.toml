@@ -10,4 +10,4 @@ serde_json = { version = "1.0.122", features = ["alloc", "arbitrary_precision", 
 tokio = { version = "1.43.1", features = ["fs", "bytes", "full", "test-util", "tracing"] }
 tower = { version = "0.4.13", features = ["full"] }
 tower-http = { version = "0.5.2", features = ["fs", "trace"] }
-tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+tracing-subscriber = { version = "0.3.20", features = ["env-filter"] }
